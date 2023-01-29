@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useNavigate } from 'react-router-dom';
 import TeacherService from '../services/TeacherService'
 
 class ListTeacherComponent extends Component {
@@ -12,6 +13,7 @@ class ListTeacherComponent extends Component {
         this.editTeacher = this.editTeacher.bind(this);
         this.deleteTeacher = this.deleteTeacher.bind(this);
     }
+    
 
     deleteTeacher(id){
         TeacherService.deleteTeacher(id).then( res => {
@@ -32,7 +34,7 @@ class ListTeacherComponent extends Component {
     }
 
     addTeacher(){
-        this.props.history.push('/add-Teacher/_add');
+        this.props.navHook('/add-Teacher/_add');
     }
 
     render() {
@@ -80,4 +82,8 @@ class ListTeacherComponent extends Component {
     }
 }
 
-export default ListTeacherComponent
+function myParams(Component) {
+    return props => <Component navHook={useNavigate()} />;
+}
+
+export default myParams(ListTeacherComponent);

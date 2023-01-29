@@ -9,6 +9,7 @@ class TeacherService {
     }
 
     createTeacher(Teacher){
+        console.log(Teacher);
         return axios.post(Teacher_API_BASE_URL, Teacher);
     }
 

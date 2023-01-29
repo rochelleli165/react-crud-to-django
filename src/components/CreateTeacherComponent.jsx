@@ -7,13 +7,12 @@ class CreateTeacherComponent extends Component {
 
         this.state = {
             // step 2
-            id: this.props.match.params.id,
-            firstName: '',
-            lastName: '',
-            emailId: ''
+            id: '_add',
+            name: '',
+            age: '',
         }
-        this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
-        this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
+        this.changeNameHandler = this.changeNameHandler.bind(this);
+        this.changeAgeHandler = this.changeAgeHandler.bind(this);
         this.saveOrUpdateTeacher = this.saveOrUpdateTeacher.bind(this);
     }
 
@@ -26,16 +25,17 @@ class CreateTeacherComponent extends Component {
         }else{
             TeacherService.getTeacherById(this.state.id).then( (res) =>{
                 let Teacher = res.data;
-                this.setState({firstName: Teacher.firstName,
-                    lastName: Teacher.lastName,
-                    emailId : Teacher.emailId
+                this.setState({
+                    id: 0, 
+                    name: Teacher.name,
+                    age : Teacher.age
                 });
             });
         }        
     }
     saveOrUpdateTeacher = (e) => {
         e.preventDefault();
-        let Teacher = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
+        let Teacher = {id: 0, name: this.state.name, age: this.state.age};
         console.log('Teacher => ' + JSON.stringify(Teacher));
 
         // step 5
@@ -50,16 +50,12 @@ class CreateTeacherComponent extends Component {
         }
     }
     
-    changeFirstNameHandler= (event) => {
-        this.setState({firstName: event.target.value});
+    changeNameHandler= (event) => {
+        this.setState({name: event.target.value});
     }
 
-    changeLastNameHandler= (event) => {
-        this.setState({lastName: event.target.value});
-    }
-
-    changeEmailHandler= (event) => {
-        this.setState({emailId: event.target.value});
+    changeAgeHandler= (event) => {
+        this.setState({age: event.target.value});
     }
 
     cancel(){
@@ -86,19 +82,14 @@ class CreateTeacherComponent extends Component {
                                 <div className = "card-body">
                                     <form>
                                         <div className = "form-group">
-                                            <label> First Name: </label>
+                                            <label> Name: </label>
                                             <input placeholder="First Name" name="firstName" className="form-control" 
-                                                value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
+                                                value={this.state.name} onChange={this.changeNameHandler}/>
                                         </div>
                                         <div className = "form-group">
-                                            <label> Last Name: </label>
+                                            <label> Age: </label>
                                             <input placeholder="Last Name" name="lastName" className="form-control" 
-                                                value={this.state.lastName} onChange={this.changeLastNameHandler}/>
-                                        </div>
-                                        <div className = "form-group">
-                                            <label> Email Id: </label>
-                                            <input placeholder="Email Address" name="emailId" className="form-control" 
-                                                value={this.state.emailId} onChange={this.changeEmailHandler}/>
+                                                value={this.state.age} onChange={this.changeAgeHandler}/>
                                         </div>
 
                                         <button className="btn btn-success" onClick={this.saveOrUpdateTeacher}>Save</button>

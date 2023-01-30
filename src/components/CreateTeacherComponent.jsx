@@ -7,10 +7,11 @@ class CreateTeacherComponent extends Component {
 
         this.state = {
             // step 2
-            id: '_add',
+            id: window.location.pathname.split("/")[2],
             name: '',
             age: '',
         }
+        console.log(this.state.id)
         this.changeNameHandler = this.changeNameHandler.bind(this);
         this.changeAgeHandler = this.changeAgeHandler.bind(this);
         this.saveOrUpdateTeacher = this.saveOrUpdateTeacher.bind(this);

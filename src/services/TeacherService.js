@@ -24,6 +24,7 @@ class TeacherService {
     deleteTeacher(TeacherId){
         return axios.delete(Teacher_API_BASE_URL + '/' + TeacherId);
     }
+
 }
 
 export default new TeacherService()

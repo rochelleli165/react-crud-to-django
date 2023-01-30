@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import TeacherService from '../services/TeacherService'
+import { useParams } from 'react-router-dom';
 
 class ViewTeacherComponent extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            id: this.props.match.params.id,
+            id: window.location.pathname.split("/")[2],
             Teacher: {}
         }
     }
@@ -15,8 +15,9 @@ class ViewTeacherComponent extends Component {
         TeacherService.getTeacherById(this.state.id).then( res => {
             this.setState({Teacher: res.data});
         })
-    }
 
+    }
+    
     render() {
         return (
             <div>
@@ -25,16 +26,16 @@ class ViewTeacherComponent extends Component {
                     <h3 className = "text-center"> View Teacher Details</h3>
                     <div className = "card-body">
                         <div className = "row">
-                            <label> Teacher First Name: </label>
-                            <div> { this.state.Teacher.firstName }</div>
+                            <label> Teacher Name: </label>
+                            <div> { this.state.Teacher.name }</div>
                         </div>
                         <div className = "row">
-                            <label> Teacher Last Name: </label>
-                            <div> { this.state.Teacher.lastName }</div>
+                            <label> Teacher Age: </label>
+                            <div> { this.state.Teacher.age}</div>
                         </div>
                         <div className = "row">
-                            <label> Teacher Email ID: </label>
-                            <div> { this.state.Teacher.emailId }</div>
+                            <label> Teacher ID: </label>
+                            <div> { this.state.Teacher.id }</div>
                         </div>
                     </div>
 

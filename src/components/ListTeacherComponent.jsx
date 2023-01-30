@@ -21,10 +21,10 @@ class ListTeacherComponent extends Component {
         });
     }
     viewTeacher(id){
-        this.props.history.push(`/view-Teacher/${id}`);
+        this.props.navHook(`/view-Teacher/${id}`);
     }
     editTeacher(id){
-        this.props.history.push(`/add-Teacher/${id}`);
+        this.props.navHook(`/add-Teacher/${id}`);
     }
 
     componentDidMount(){

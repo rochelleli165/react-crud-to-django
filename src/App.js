@@ -15,10 +15,10 @@ function App() {
               <HeaderComponent />
                 <div className="container">
                     <Routes> 
-                          <Route path = "/" element = {< ListTeacherComponent />} > </Route>
-                          <Route path = "/Teachers" element = {< ListTeacherComponent />}></Route>
-                          <Route path = "/add-Teacher/:id" element = {< CreateTeacherComponent />}></Route>
-                          <Route path = "/view-Teacher/:id" element = {< ViewTeacherComponent />} ></Route>
+                          <Route path = "/" element = {< ListTeacherComponent />} exact > </Route>
+                          <Route path = "/Teachers" element = {< ListTeacherComponent />} exact > </Route>
+                          <Route path = "/add-Teacher/:id" element = {< CreateTeacherComponent />} exact></Route>
+                          <Route path = "/view-Teacher/:id" element = {< ViewTeacherComponent />} exact ></Route>
                           {/* <Route path = "/update-Teacher/:id" component = {UpdateTeacherComponent}></Route> */}
                     </Routes>
                 </div>
